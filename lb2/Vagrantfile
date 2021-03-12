@@ -4,3 +4,17 @@
 # Mit diesem Vagrant File wird eine Virtuelle Maschine erstellt welche eine Datenbank hat und vom Host aus via MySQL Workbench erreicht 
 # werden kann. Diese Virtuelle Maschine hat eine Firewall und weitere Security Features. 
 
+# Virtuelle Maschine mit Datenbank
+Vagrant.configure(2) do |config|
+
+  # Mit "ubuntu/bionic64" wird eine Ubuntu 18.04 64 Bit Virtuelle Maschine erstellt
+  config.vm.box = "ubuntu/bionic64"
+
+  # Hier wird Virtualbox als Provider für die Virtuelle Maschine definiert, das heisst das die Virtuelle Maschine auf Virtualbox läuft
+config.vm.provider "virtualbox" do |vb|
+
+    # Hier wird die Kapazität des RAMs der Virtuellen Maschine definiert, in diesem Fall ist diese 2048MB gross
+  vb.memory = "2048"  
+
+end
+end
