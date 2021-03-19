@@ -7,4 +7,4 @@ In diesem Dokument wird die LB2 des Moduls 300 beschrieben. Die Aufgabe war es m
 
 ## Grafische Übersicht
 
-![Netzwerkplan LB2](https://github.com/nielseth/m300_lb/tree/main/lb2/images/Netzwerkplan.png)
+![Netzwerkplan LB2](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Netzwerkplan.png)
