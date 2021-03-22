@@ -5,9 +5,12 @@
 ## Einleitung
 In diesem Dokument wird die **LB2** des Moduls 300 beschrieben. Die Aufgabe war es mit Hilfe von Vagrant ein Infrastructure as Code Projekt machen indem ein Service oder Serverdienst automatisiert wird. Ich habe mich dazu entschieden mit Vagrant eine Virtualbox VM aufzusetzen welche eine Datenbank enthält sowie Firewall. Mit MySQL Workbench soll dann vom Host aus darauf zugegriffen werden. In der Grafischen Übersicht also im Netzwerk Plan welcher Folgt sollte klar sein wie das Projekt aufgebaut ist. 
 
-## Grafische Übersicht
+## Grafische Übersicht (Netzwerkplan)
 
 ![Netzwerkplan LB2](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Netzwerkplan.png)
+
+### Erklärung Netzwerkplan
+Der Host 192.168.55.1 ist des Gerät von dem der Befehl Vagrant up ausgeführt wird. Wie man auf der Grafik sehen kann wird eine Vagrant Box mit der Ubuntu OS Version 18.04 aufgesetzt und mit der IP Adresse 192.168.55.200. Auf dieser VM ist die Datenbank und die Firewall welche alle Verbindungen auf die VM blockt ausser, Verbindungen auf den Port 22 und 3306 vom Host. 
 
 ## Erklärung von Code
 ### Vagrantfile
@@ -81,3 +84,11 @@ Das config Shell File wird im Vagrantfile referenziert und dieses File enthaltet
 	`sudo ufw allow from 192.168.55.1 to any port 3306`
 
 	`sudo ufw -f enable`
+
+## Gedanken zu Security
+
+## Benutzen der Umgebung
+
+## Testing
+
+## Quellenverzeichnis
