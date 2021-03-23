@@ -2,18 +2,18 @@
 
 ## Inhaltsverzeichnis
 
-## Einleitung
+## 1 Einleitung
 In diesem Dokument wird die **LB2** des Moduls 300 beschrieben. Die Aufgabe war es mit Hilfe von Vagrant ein Infrastructure as Code Projekt machen indem ein Service oder Serverdienst automatisiert wird. Ich habe mich dazu entschieden mit Vagrant eine Virtualbox VM aufzusetzen welche eine Datenbank enthält sowie Firewall. Mit MySQL Workbench soll dann vom Host aus darauf zugegriffen werden. In der Grafischen Übersicht also im Netzwerk Plan welcher Folgt sollte klar sein wie das Projekt aufgebaut ist. 
 
-## Grafische Übersicht (Netzwerkplan)
+## 2 Grafische Übersicht (Netzwerkplan)
 
 ![Netzwerkplan LB2](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Netzwerkplan.png)
 
-### Erklärung Netzwerkplan
+### 2.1 Erklärung Netzwerkplan
 Der Host 192.168.55.1 ist des Gerät von dem der Befehl Vagrant up ausgeführt wird. Wie man auf der Grafik sehen kann wird eine Vagrant Box mit der Ubuntu OS Version 18.04 aufgesetzt und mit der IP Adresse 192.168.55.200. Auf dieser VM ist die Datenbank und die Firewall welche alle Verbindungen auf die VM blockt ausser, Verbindungen auf den Port 22 und 3306 vom Host. 
 
-## Erklärung von Code
-### Vagrantfile
+## 3 Erklärung von Code
+### 3.1 Vagrantfile
 Mit dem Vagrantfile wird die Vagrant Box erstellt. Gleich unten sind die einzelnen Commands beschrieben im Vagrantfile.
 
 1. Config des Virtuellen Maschine wird definiert: 
@@ -49,7 +49,7 @@ Mit dem Vagrantfile wird die Vagrant Box erstellt. Gleich unten sind die einzeln
 
 	`config.vm.network "private_network", ip: "192.168.55.200"`
 
-### config Shell File
+### 3.2 config Shell File
 Das config Shell File wird im Vagrantfile referenziert und dieses File enthaltet Commands welche auf der Virtuellen Maschine ausgeführt werden. Gleich unten werden die einzelnen Commands welche im config Shell File vorhanden sind beschrieben. 
 
 1. In diesen beiden Zeilen wird das MySQL root Passwort definiert damit die Installation von MySQL nicht unterbrochen wird. Das liegt daran das die MySQL Server Installation User input benötigt:
@@ -77,7 +77,7 @@ Das config Shell File wird im Vagrantfile referenziert und dieses File enthaltet
 
 	`sudo service mysql restart`
 
-6. Ganz zum Schluss des config Shell Files wird die Firewall konfigueriert. Die Firewall blockt by Default allen incoming und outbound traffic. Deshalb habe ich für den Host der Virtuellen Maschine den Port 22 und 3306 geöffnet damit sich dieser zum einen via SSH auf die Virtuelle Maschine verbinden kann und zum anderen via MySQL Workbench den Datenbank Server öffnen kann. Da ich die Ports nur für den Host der Virtuellen Maschine geöffnet habe, ist das Security Problem von vorhin bei Punkt 4 wieder gelöst da nur eine Person, nämlich der Host dden Datenbank Server öffnen kann:
+6. Ganz zum Schluss des config Shell Files wird die Firewall konfigueriert. Die Firewall blockt by Default allen incoming traffic. Deshalb habe ich für den Host der Virtuellen Maschine den Port 22 und 3306 geöffnet damit sich dieser zum einen via SSH auf die Virtuelle Maschine verbinden kann und zum anderen via MySQL Workbench den Datenbank Server öffnen kann. Da ich die Ports nur für den Host der Virtuellen Maschine geöffnet habe, ist das Security Problem von vorhin bei Punkt 4 wieder gelöst da nur eine Person, nämlich der Host dden Datenbank Server öffnen kann:
 
 	`sudo ufw allow from 192.168.55.1 to any port 22`
 
@@ -85,9 +85,19 @@ Das config Shell File wird im Vagrantfile referenziert und dieses File enthaltet
 
 	`sudo ufw -f enable`
 
-## Gedanken zu Security
+## 4 Benutzen der Umgebung
+Die Benutzung dieses Infrastructure as Code ist relativ simple. Ich werde in diesem Kapitel zusammenfassen was es braucht um diese Umgebung zu verwenden. 
 
-## Benutzen der Umgebung
+Um diese Umgebung zu starten muss man Sie zuerst mit Hilfe der Git Bash aus dem GitHub clonen. Dazu muss man einfach Git auf dem Rechner installieren. Nach dem clonen der Umgebung sollte man via der Git Bash Console im Verzeichnis ...m300_lb/lb2 den Vagrant up Befehl eingeben so das die Vagrant Box anhand des Vagrantfiles sowie des config Shell Scripts gestartet wird. 
+
+Da dies ein Service ist muss nach dem Vagrant up Befehl nichts mehr an der Virtuellen Maschine verändert werden. Um nun den Datenbank Server der Virtuellen Maschine zu erreichen muss man via der MySQL Workbench eine neue Verbindung erstellen, MySQL Workbench kann man genau wie Git einfach im Internet installieren. Bei der neuen Verbindung welche man erstellen sollte um den Datenbank Server zu erreichen sollten die Felder wie folgt aussehen. 
+
+![Verbindung mit Datenbank Server](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Felder-f%C3%BCr-Connection.png)
+
+Bei Password unter Store in Vault kann man dann das Passwort des root Users eingeben welches wir im config shell Script definiert haben. In diesem Fall heisst unser Passwort "admin". 
+
+## 5 Gedanken zu Security
+Wie vorhin im Kapitel drei schon erwähnt habe ich mir einige Gedanken zur Security gemacht. 
 
 ## Testing
 
