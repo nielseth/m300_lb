@@ -96,9 +96,18 @@ Da dies ein Service ist muss nach dem Vagrant up Befehl nichts mehr an der Virtu
 
 Bei Password unter Store in Vault kann man dann das Passwort des root Users eingeben welches wir im config shell Script definiert haben. In diesem Fall heisst unser Passwort "admin". 
 
+Nachdem man dies so gemacht hat kann man unten auf OK klicken und es sollte ein neues Feld unter MySQL Connections erscheinen. Man kann nun auf dieses Feld klicken und es sollte ein neues Fenster erscheinen. Wenn dies der Fall ist wurde erfolgreich eine Verbindung zum Datenbank Server aufgebaut. 
+
+## 5 Testing
+In diesem Kapitel wird gezeigt das diese Umgebung funktionstüchtig ist. Diese Umgebung wird mit dem Vagrant up Befehl erstellt. Dieser Befehl ist erfolgreich und erzeugt keine Fehlermeldung da nach dem ausführen dieses Befehls in der Git Bash der Befehl `echo $?` ausgeführt wurde welcher die Antwort 0 zurückgab was bedeutet das keine Fehlermeldung im vorherigen Befehl war. 
+
+![Vagrant up check](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Testing-Vagrant-up-check.png)
+
+Um dann zu testen ob der Datenbank Server erfolgreich aufgesetzt wurde, sollte man in der MySQL Workbench eine wie im Kapitel 4 erklärte neue Verbindung machen. Nach dem man die Felder wie im Bild ausgefüllt hat kann man sehen das unten rechts in diesem Feld die Option Test Connection vorhanden ist. Nach dem man diese Option anklickt sollte ein solches Feld erscheinen wie man auf dem Bild unten sehen kann. Dies bedeutet das die Verbindung mit dem Datenbank Server erfolgreich war und das soweit alles funktioniert. 
+
+![db server check](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Testing-db-server-check.png)
+
 ## 5 Gedanken zu Security
 Wie vorhin im Kapitel drei schon erwähnt habe ich mir einige Gedanken zur Security gemacht. 
-
-## Testing
 
 ## Quellenverzeichnis
