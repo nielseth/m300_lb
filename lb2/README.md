@@ -107,7 +107,13 @@ Um dann zu testen ob der Datenbank Server erfolgreich aufgesetzt wurde, sollte m
 
 ![db server check](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Testing-db-server-check.png)
 
-## 5 Gedanken zu Security
+Um nun wirklich noch sicher zu gehen ob man nun überhaupt auf dem Datenbank Server arbeiten kann, sollte man einfach die neue Connection öffnen und danach einen SQL Befehl abgeben, in diesem Fall kann man mit dem Befehl `CREATE database Testing;` einfach eine neue Datenbank erstellen. Nach dem ausführen dieses Befehls in der MySQL Workbench kann man die VM überprüfen und nachsehen ob die Datenbank erstellt wurde. Einloggen kann man sich standartmässig mit Username: vagrant, Passwort: vagrant. 
+
+Wie man auf dem Bild sehen kann wurde die Datenbank erstellt. 
+
+![db create check](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Testing-db-create-vm-check.png)
+
+## 6 Gedanken zu Security
 Wie vorhin im Kapitel drei schon erwähnt habe ich mir einige Gedanken zur Security gemacht. 
 
 ## Quellenverzeichnis
