@@ -1,6 +1,19 @@
 # M300 LB2 Dokumentation
 
+![IaC Icon](https://www.datocms-assets.com/2885/1547758259-infrastructure-as-codesolution-2x.png?fit=max&fm=png&q=80)
+
 ## Inhaltsverzeichnis
+
+  * [1 Einleitung](#1-einleitung)
+  * [2 Grafische Übersicht (Netzwerkplan)](#2-grafische--bersicht--netzwerkplan-)
+    + [2.1 Erklärung Netzwerkplan](#21-erkl-rung-netzwerkplan)
+  * [3 Erklärung von Code](#3-erkl-rung-von-code)
+    + [3.1 Vagrantfile](#31-vagrantfile)
+    + [3.2 config Shell File](#32-config-shell-file)
+  * [4 Benutzen der Umgebung](#4-benutzen-der-umgebung)
+  * [5 Testing](#5-testing)
+  * [6 Gedanken zu Security](#6-gedanken-zu-security)
+  * [7 Quellenverzeichnis](#7-quellenverzeichnis)
 
 ## 1 Einleitung
 In diesem Dokument wird die **LB2** des Moduls 300 beschrieben. Die Aufgabe war es mit Hilfe von Vagrant ein Infrastructure as Code Projekt machen indem ein Service oder Serverdienst automatisiert wird. Ich habe mich dazu entschieden mit Vagrant eine Virtualbox VM aufzusetzen welche eine Datenbank enthält sowie Firewall. Mit MySQL Workbench soll dann vom Host aus darauf zugegriffen werden. In der Grafischen Übersicht also im Netzwerk Plan welcher Folgt sollte klar sein wie das Projekt aufgebaut ist. 
@@ -114,6 +127,20 @@ Wie man auf dem Bild sehen kann wurde die Datenbank erstellt.
 ![db create check](https://github.com/nielseth/m300_lb/blob/main/lb2/images/Testing-db-create-vm-check.png)
 
 ## 6 Gedanken zu Security
-Wie vorhin im Kapitel drei schon erwähnt habe ich mir einige Gedanken zur Security gemacht. 
+Wie vorhin im Kapitel drei schon erwähnt habe ich mir einige Gedanken zur Security gemacht. Der Datenbank Server enthält einen root User welchen ich bearbeitet habe so das man von jeder IP Adresse darauf zugreifen kann. Da dies aus Security Sicht keine sehr gute Idee ist habe ich mir Gedanken gemacht wie ich diese Security Lücke beheben kann. Mir ist dann in den Sinn gekommen das ich einfach eine Firewall aufsetzen muss auf der Virtuellen Maschine welchen allen Incoming Traffic blockiert ausser für den Host der Virtuellen Maschine. Also habe ich dies mit ufw aufgesetzt und definiert das nur vom Host aus eine Verbindung mit dem Port 22 und 3306 gemacht werden kann. Sonst ist jede Art von Verbindung auf die Virtuelle Maschine nicht möglich. Man hätte das Ganze sicher auch einfacher lösen können aber ich habe in der Zeit keine andere Variante gefunden / nicht anderes hat für mich funktioniert. 
 
-## Quellenverzeichnis
+## 7 Quellenverzeichnis
+
+Bespiele von Vagrantfiles sowie config shell Script:
+
+https://github.com/mc-b/M300/tree/master/vagrant/web
+
+https://github.com/mc-b/M300/tree/master/vagrant/mmdb
+
+Überprüfen eines Commands in Linux:
+
+https://linuxhint.com/check_command_succeeded_bash/
+
+Markdown Guide:
+
+https://www.markdownguide.org/basic-syntax/
