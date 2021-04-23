@@ -1,7 +1,10 @@
-version: '2'
+version: '2.2'
 services:
   postgresql:
     image: 'bitnami/postgresql:11'
+    mem_limit: 1024M
+    mem_reservation: 256M
+    cpus: 0.5
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - POSTGRESQL_USERNAME=bn_redmine
@@ -10,6 +13,9 @@ services:
       - 'postgresql_data:/bitnami/postgresql'
   redmine:
     image: 'bitnami/redmine:4'
+    mem_limit: 512M
+    mem_reservation: 128M
+    cpus: 0.5
     ports:
       - '80:3000'
     environment:
@@ -25,3 +31,4 @@ volumes:
     driver: local
   redmine_data:
     driver: local
+
