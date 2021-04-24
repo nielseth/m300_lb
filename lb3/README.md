@@ -7,6 +7,8 @@
 
 
 ## 2 Grafische Übersicht (Netzwerkplan)
+![Netzwerkplan LB3](https://github.com/nielseth/m300_lb/blob/main/lb3/Images/Netzwerkplan.png)
+
 
 ### 2.1 Erklärung Netzwerkplan
 
