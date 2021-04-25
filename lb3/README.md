@@ -11,7 +11,7 @@ In diesem Dokument wird die **LB3** des Moduls 300 beschrieben. Die Aufgabe war 
 
 
 ### 2.1 Erklärung Netzwerkplan
-
+Auf meinem Laptop in dieser Grafik auch Host gennant läuft eine Vagrant VM mit der Ubuntu Version 16.04. In dieser VM laufen die beiden Container. Zum einen der Postgresql Datenbank Server und zum anderen der Web Server für Redmine. Dieser Web Server Container hat ein Port Forwarding von Port 3000 auf den Port 80 der Vagrant VM. Die Vagrant VM hat ein Port Forwarding von Port 80 auf den Host Port 8080. Wenn also nun der Web Server in der Vagrant VM im auf dem Container läuft so kann man sich via localhost:8080 auf den Web Server verbinden. 
 
 ## 3 Erklärung von Code
 
