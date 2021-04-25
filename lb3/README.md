@@ -14,9 +14,58 @@ In diesem Dokument wird die **LB3** des Moduls 300 beschrieben. Die Aufgabe war 
 Auf meinem Laptop in dieser Grafik auch Host gennant läuft eine Vagrant VM mit der Ubuntu Version 16.04. In dieser VM laufen die beiden Container. Zum einen der Postgresql Datenbank Server und zum anderen der Web Server für Redmine. Dieser Web Server Container hat ein Port Forwarding von Port 3000 auf den Port 80 der Vagrant VM. Die Vagrant VM hat ein Port Forwarding von Port 80 auf den Host Port 8080. Wenn also nun der Web Server in der Vagrant VM im auf dem Container läuft so kann man sich via localhost:8080 auf den Web Server verbinden. 
 
 ## 3 Erklärung von Code
-
 ### 3.1 docker-compose.yaml File
+Mit dem docker-compose.yaml File werden beide Container erstellt. Gleich unten sind die einzelnen Commands des docker-compose.yaml Files beschrieben. 
 
+1. Die Version des docker-compose Files wird definiert. Das Tag services steht immer zu beginn eines docker-compose Files.
+
+    `version: '2.2'`
+    `services:`
+
+2. Datenbank Server Container wird mit dieser Zeile definiert. 
+
+    `postgresql:`
+
+3. Das Image des Datenbank Server wird definiert in diesem Fall heisst das Image bitnami/postgresql:11
+
+    `image: 'bitnami/postgresql:11'`
+
+4. In diesen Zeilen wird die Security der VM und im betracht genommen. Es wird eine Memory Limite definiert von 1024 MB. Einse Memory Reservation von 256 MB wird auch definiert so das dieser Container immer mindestens soviel Memory zur Verfügung hat. Zudem wird definiert das dieser Container 0.5 cpus verwenden kann also 50% der Cpu Kapazität. 
+
+    `mem_limit: 1024M`
+    `mem_reservation: 256M`
+    `cpus: 0.5`
+
+5. Die Umgebungsvariablen welche Verwendet werden, werden hier definiert. Es werden einfach Datenbank Name definiert sowie der Username des Datenbank Users. Diese Umgebungsvariablen wird der Redmine Container verwenden für das erstellen / einloggen in die Datenbank. 
+
+    `environment:`
+      `- ALLOW_EMPTY_PASSWORD=yes`
+      `- POSTGRESQL_USERNAME=bn_redmine`
+      `- POSTGRESQL_DATABASE=bitnami_redmine`
+
+6. 
+    volumes:
+      - 'postgresql_data:/bitnami/postgresql'
+  redmine:
+    image: 'bitnami/redmine:4'
+    mem_limit: 512M
+    mem_reservation: 128M
+    cpus: 0.5
+    ports:
+      - '80:3000'
+    environment:
+      - REDMINE_DB_POSTGRES=postgresql
+      - REDMINE_DB_USERNAME=bn_redmine
+      - REDMINE_DB_NAME=bitnami_redmine
+    volumes:
+      - 'redmine_data:/bitnami'
+    depends_on:
+      - postgresql
+volumes:
+  postgresql_data:
+    driver: local
+  redmine_data:
+    driver: local
 ### 3.2 dockerr-compose.dev.yaml File
 
 ## 4 Benutzen der Umgebung
