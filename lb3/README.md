@@ -20,6 +20,7 @@ Mit dem docker-compose.yaml File werden beide Container erstellt. Gleich unten s
 1. Die Version des docker-compose Files wird definiert. Das Tag services steht immer zu beginn eines docker-compose Files.
 
     `version: '2.2'`
+    
     `services:`
 
 2. Datenbank Server Container wird mit dieser Zeile definiert. 
@@ -33,14 +34,19 @@ Mit dem docker-compose.yaml File werden beide Container erstellt. Gleich unten s
 4. In diesen Zeilen wird die Security der VM und im betracht genommen. Es wird eine Memory Limite definiert von 1024 MB. Einse Memory Reservation von 256 MB wird auch definiert so das dieser Container immer mindestens soviel Memory zur Verfügung hat. Zudem wird definiert das dieser Container 0.5 cpus verwenden kann also 50% der Cpu Kapazität. 
 
     `mem_limit: 1024M`
+    
     `mem_reservation: 256M`
+    
     `cpus: 0.5`
 
 5. Die Umgebungsvariablen welche Verwendet werden, werden hier definiert. Es werden einfach Datenbank Name definiert sowie der Username des Datenbank Users. Diese Umgebungsvariablen wird der Redmine Container verwenden für das erstellen / einloggen in die Datenbank. 
 
     `environment:`
+      
       `- ALLOW_EMPTY_PASSWORD=yes`
+      
       `- POSTGRESQL_USERNAME=bn_redmine`
+      
       `- POSTGRESQL_DATABASE=bitnami_redmine`
 
 6. 
