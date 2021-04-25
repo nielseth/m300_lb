@@ -31,7 +31,7 @@ Mit dem docker-compose.yaml File werden beide Container erstellt. Gleich unten s
 
     `image: 'bitnami/postgresql:11'`
 
-4. In diesen Zeilen wird die Security der VM und im betracht genommen. Es wird eine Memory Limite definiert von 1024 MB. Einse Memory Reservation von 256 MB wird auch definiert so das dieser Container immer mindestens soviel Memory zur Verfügung hat. Zudem wird definiert das dieser Container 0.5 cpus verwenden kann also 50% der Cpu Kapazität. 
+4. In diesen Zeilen wird die Security der VM und im betracht genommen. Es wird eine Memory Limite definiert von 1024 MB. Eine Memory Reservation von 256 MB wird auch definiert so das dieser Container immer mindestens soviel Memory zur Verfügung hat. Zudem wird definiert das dieser Container 0.5 cpus verwenden kann also 50% der Cpu Kapazität. 
 
     `mem_limit: 1024M`
     
@@ -49,20 +49,45 @@ Mit dem docker-compose.yaml File werden beide Container erstellt. Gleich unten s
       
       `- POSTGRESQL_DATABASE=bitnami_redmine`
 
-6. 
-    volumes:
-      - 'postgresql_data:/bitnami/postgresql'
-  redmine:
-    image: 'bitnami/redmine:4'
-    mem_limit: 512M
-    mem_reservation: 128M
-    cpus: 0.5
-    ports:
-      - '80:3000'
-    environment:
-      - REDMINE_DB_POSTGRES=postgresql
-      - REDMINE_DB_USERNAME=bn_redmine
-      - REDMINE_DB_NAME=bitnami_redmine
+6. Docker Volume wird definiert, zeigt auf /bitnami/postgresql des Containers.
+
+    `volumes:`
+      
+      `- 'postgresql_data:/bitnami/postgresql'`
+
+7. Redmine Web Server Container wird in dieser Zeile definiert.
+
+    `redmine:`
+
+8. Image welches verwendet wird, wird definiert, im Falle des Web Servers heisst das Image bitnami/redmine:4
+
+    `image: 'bitnami/redmine:4'`
+
+9. In diesen Zeilen wird die Security der VM und im betracht genommen. Es wird eine Memory Limite definiert von 512 MB. Eine Memory Reservation von 128 MB wird auch definiert so das dieser Container immer mindestens soviel Memory zur Verfügung hat. Zudem wird definiert das dieser Container 0.5 cpus verwenden kann also 50% der Cpu Kapazität. Dies ist dasselbe wie beim Datenbank Container, es wurden einfach andere Werte verwendet. 
+
+    `mem_limit: 512M`
+
+    `mem_reservation: 128M`
+
+    `cpus: 0.5`
+
+10. Hier wird das Port Forwarding des Web Server Containers gemacht. Dieses Port Forwarding kann man auf dem Netzwerkplan auch schon sehen. Es wird einfach Port 3000 des Containers auf Port 80 der VM gemapped. 
+    
+    `ports:`
+
+      `- '80:3000'`
+
+11. Die Umgebungsvariablen welche verwendet werden sind hier definiert. Wie man sehen kann sind es die selben Werte wie vorhin bei den Datenbank Server Umgebungsvariablen. Der Web Server Container benötigt nämlich die Werte dieser Umgebungsvariablen um sich bei dem Datenbank Server Container einzuloggen und eine Datenbank zu erstellen. 
+
+    `environment:`
+
+      `- REDMINE_DB_POSTGRES=postgresql`
+
+      `- REDMINE_DB_USERNAME=bn_redmine`
+
+      `- REDMINE_DB_NAME=bitnami_redmine`
+
+12. 
     volumes:
       - 'redmine_data:/bitnami'
     depends_on:
