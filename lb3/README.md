@@ -43,17 +43,17 @@ Mit dem docker-compose.yaml File werden beide Container erstellt. Gleich unten s
 
     `environment:`
       
-      `- ALLOW_EMPTY_PASSWORD=yes`
+    `- ALLOW_EMPTY_PASSWORD=yes`
       
-      `- POSTGRESQL_USERNAME=bn_redmine`
+    `- POSTGRESQL_USERNAME=bn_redmine`
       
-      `- POSTGRESQL_DATABASE=bitnami_redmine`
+    `- POSTGRESQL_DATABASE=bitnami_redmine`
 
 6. Docker Volume wird definiert, zeigt auf /bitnami/postgresql des Containers.
 
     `volumes:`
       
-      `- 'postgresql_data:/bitnami/postgresql'`
+    `- 'postgresql_data:/bitnami/postgresql'`
 
 7. Redmine Web Server Container wird in dieser Zeile definiert.
 
@@ -75,44 +75,44 @@ Mit dem docker-compose.yaml File werden beide Container erstellt. Gleich unten s
     
     `ports:`
 
-      `- '80:3000'`
+    `- '80:3000'`
 
 11. Die Umgebungsvariablen welche verwendet werden sind hier definiert. Wie man sehen kann sind es die selben Werte wie vorhin bei den Datenbank Server Umgebungsvariablen. Der Web Server Container benötigt nämlich die Werte dieser Umgebungsvariablen um sich bei dem Datenbank Server Container einzuloggen und eine Datenbank zu erstellen. 
 
     `environment:`
 
-      `- REDMINE_DB_POSTGRES=postgresql`
+    `- REDMINE_DB_POSTGRES=postgresql`
 
-      `- REDMINE_DB_USERNAME=bn_redmine`
+    `- REDMINE_DB_USERNAME=bn_redmine`
 
-      `- REDMINE_DB_NAME=bitnami_redmine`
+    `- REDMINE_DB_NAME=bitnami_redmine`
 
 12. Docker Volume wird definiert und zeigt auf /bitnami des Containers
 
     `volumes:`
 
-      `- 'redmine_data:/bitnami'`
+    `- 'redmine_data:/bitnami'`
 
 13. In dieser Zeile wird definiert das der Redmine Container erst startet wenn der Postgresql Datenbank Server Container gestartet ist. Dies wird gemacht um Konflikten und Fehlermeldungen aus dem Weg zu gehen. 
     
     `depends_on:`
 
-      `- postgresql`
+    `- postgresql`
 
 14. Dies wird benötigt für die Docker Volumes, ohne diesen Driver angaben könnte das Docker Volume nicht erstellt werden / es würde eine Fehlermeldung beim starten der Container erscheinen. 
 
-`volumes:`
+    `volumes:`
 
-  `postgresql_data:`
+    `postgresql_data:`
 
     `driver: local`
 
-  `redmine_data:`
+    `redmine_data:`
 
     `driver: local`
 
 ### 3.2 docker-compose.dev.yaml File
-Das docker-compose.dev.yaml File wird für Testing Gründe verwendet. Mit Merged Docker-Compose Files wird zuerst das docker-compose.yaml File ausgeführt und danach das docker-compose.dev.yaml File. Mit dem docker-compose.dev.yaml File werden dann einfach alle Änderungen zum docker-compose.yaml File übernommen. In diesem Fall sind es andere Memory  und CPU Limiten und ein anderes Image. 
+Das docker-compose.dev.yaml File wird für Testing Gründe verwendet. Mit Merged Docker-Compose Files wird zuerst das docker-compose.yaml File ausgeführt und danach das docker-compose.dev.yaml File. Mit dem docker-compose.dev.yaml File werden dann einfach alle Änderungen zum docker-compose.yaml File übernommen. In diesem Fall sind es andere Memory und CPU Limiten und ein anderes Image. Diese Art von Merged Docker-Compose Files kann sehr gut dazu verwendet werden um eine Produktive sowie Development Umgebung für einen Service zu haben. Zum Beispiel kann man dann beim docker-compose.yaml File Umgebungsvariablen definieren welche bei der Produktiven Umgebung verwendet werden und mit dem docker-compose.dev.yaml File werden dann die Umgebungsvariablen geändert da diese vom File überschrieben werden und so kann man verschiedene Datenbanken verwenden indem man die Container auf verschiedene Arten startet. 
 
 1. Zuerst werden wie vorhin im docker-compose.yaml File die Version definiert sowie der Service Tag steht. 
 
@@ -148,6 +148,9 @@ Das docker-compose.dev.yaml File wird für Testing Gründe verwendet. Mit Merged
 
 
 ## 4 Benutzen der Umgebung
+
+
+### 4.1 Probleme bei aufbauen der Umgebung
 
 
 ## 5 Testing
