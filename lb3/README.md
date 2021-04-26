@@ -87,17 +87,65 @@ Mit dem docker-compose.yaml File werden beide Container erstellt. Gleich unten s
 
       `- REDMINE_DB_NAME=bitnami_redmine`
 
-12. 
-    volumes:
-      - 'redmine_data:/bitnami'
-    depends_on:
-      - postgresql
-volumes:
-  postgresql_data:
-    driver: local
-  redmine_data:
-    driver: local
-### 3.2 dockerr-compose.dev.yaml File
+12. Docker Volume wird definiert und zeigt auf /bitnami des Containers
+
+    `volumes:`
+
+      `- 'redmine_data:/bitnami'`
+
+13. In dieser Zeile wird definiert das der Redmine Container erst startet wenn der Postgresql Datenbank Server Container gestartet ist. Dies wird gemacht um Konflikten und Fehlermeldungen aus dem Weg zu gehen. 
+    
+    `depends_on:`
+
+      `- postgresql`
+
+14. Dies wird benötigt für die Docker Volumes, ohne diesen Driver angaben könnte das Docker Volume nicht erstellt werden / es würde eine Fehlermeldung beim starten der Container erscheinen. 
+
+`volumes:`
+
+  `postgresql_data:`
+
+    `driver: local`
+
+  `redmine_data:`
+
+    `driver: local`
+
+### 3.2 docker-compose.dev.yaml File
+Das docker-compose.dev.yaml File wird für Testing Gründe verwendet. Mit Merged Docker-Compose Files wird zuerst das docker-compose.yaml File ausgeführt und danach das docker-compose.dev.yaml File. Mit dem docker-compose.dev.yaml File werden dann einfach alle Änderungen zum docker-compose.yaml File übernommen. In diesem Fall sind es andere Memory  und CPU Limiten und ein anderes Image. 
+
+1. Zuerst werden wie vorhin im docker-compose.yaml File die Version definiert sowie der Service Tag steht. 
+
+    `version: '2.2'`
+
+    `services:`
+
+2. Wie vorhin beim docker-compose.yaml File wird der selbe Container Name verwendet. Es wird aber jedoch nicht das bitnami/postgresql:11 Image verwendet sondern das latest Image. Dazu sind andere Memory und CPU Limiten definiert. 
+  
+    `postgresql:`
+    
+    `image: 'bitnami/postgresql:latest'`
+
+    `mem_limit: 512M`
+
+    `mem_reservation: 128M`
+
+    `cpus: 0.25`
+
+3. Zum Schluss sind noch die selben Umgebungsvariablen definiert sowie das selbe Docker Volume
+    
+    `environment:`
+
+      `- ALLOW_EMPTY_PASSWORD=yes`
+
+      `- POSTGRESQL_USERNAME=bn_redmine`
+
+      `- POSTGRESQL_DATABASE=bitnami_redmine`
+
+    `volumes:`
+
+      `- 'postgresql_data:/bitnami/postgresql'`
+
 
 ## 4 Benutzen der Umgebung
 
