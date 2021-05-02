@@ -1,11 +1,12 @@
 # M300 LB3 Dokumentation
 
+![Titelblatt](https://quintagroup.com/cms/technology/Images/docker-compose-button.jpg)
+
 ## Inhaltsverzeichnis
 
-  * [Inhaltsverzeichnis](#inhaltsverzeichnis)
   * [1 Einleitung](#1-einleitung)
-  * [2 Grafische Übersicht (Netzwerkplan)](#2-grafische--bersicht--netzwerkplan-)
-    + [2.1 Erklärung Netzwerkplan](#21-erkl-rung-netzwerkplan)
+  * [2 Grafische Übersicht (Netzwerkplan)](#2-grafische--übersicht--netzwerkplan-)
+    + [2.1 Erklärung Netzwerkplan](#21-erklärung-netzwerkplan)
   * [3 Erklärung von Code](#3-erkl-rung-von-code)
     + [3.1 docker-compose.yaml File](#31-docker-composeyaml-file)
     + [3.2 docker-compose.dev.yaml File](#32-docker-composedevyaml-file)
@@ -207,4 +208,28 @@ Bei der Security habe ich den Fokus auf die Begrenzung der Resourcen der einzeln
 Grund für diese Begrenzung ist das die Container nicht alle Ressourcen der virtuelle Maschine für sich beziehen. 
 
 ## 7 Quellenverzeichnis
+
+Markdown Guide:
+
+https://www.markdownguide.org/basic-syntax/
+
+Markdown Table of Contents:
+
+https://ecotrust-canada.github.io/markdown-toc/
+
+Titelblatt:
+
+https://quintagroup.com/cms/technology/Images/docker-compose-button.jpg
+
+CPU & RAM Limit:
+
+https://www.baeldung.com/ops/docker-memory-limit
+
+Docker Hub Inspiration:
+
+https://hub.docker.com/r/bitnami/redmine/
+
+https://hub.docker.com/r/bitnami/postgresql/
+
+
 
