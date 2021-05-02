@@ -2,6 +2,19 @@
 
 ## Inhaltsverzeichnis
 
+  * [Inhaltsverzeichnis](#inhaltsverzeichnis)
+  * [1 Einleitung](#1-einleitung)
+  * [2 Grafische Übersicht (Netzwerkplan)](#2-grafische--bersicht--netzwerkplan-)
+    + [2.1 Erklärung Netzwerkplan](#21-erkl-rung-netzwerkplan)
+  * [3 Erklärung von Code](#3-erkl-rung-von-code)
+    + [3.1 docker-compose.yaml File](#31-docker-composeyaml-file)
+    + [3.2 docker-compose.dev.yaml File](#32-docker-composedevyaml-file)
+  * [4 Benutzen der Umgebung](#4-benutzen-der-umgebung)
+    + [4.1 Probleme bei aufbauen der Umgebung](#41-probleme-bei-aufbauen-der-umgebung)
+  * [5 Testing](#5-testing)
+  * [6 Gedanken zu Security](#6-gedanken-zu-security)
+  * [7 Quellenverzeichnis](#7-quellenverzeichnis)
+
 
 ## 1 Einleitung
 In diesem Dokument wird die **LB3** des Moduls 300 beschrieben. Die Aufgabe war es mit Hilfe von Docker und Docker-Compose ein Projekt zu machen, indem ein Service oder Serverdienst automatisiert wird. Ich habe mich dazu entschieden das Projektmanagement Tool Redmine mit Hilfe von Docker aufzusetzen. Es werden mit Hilfe eines docker-compose.yaml File zwei Container erstellt, ein Web Server und ein Datenbank Server. In der Grafischen Übersicht sollte gut aufgezeigt sein in welcher Umgebung das Ganze läuft.
@@ -185,7 +198,7 @@ Als erstes der Beweis das die Container für Prod und Dev Umgebung starten. Unte
 
 ![Dev start](https://github.com/nielseth/m300_lb/blob/main/lb3/Images/Container-start-Dev.PNG)
 
-
+Im Kapitel 4 wurde bereits aufgezeigt das man das Redmine Webinterface erreichen kann via localhost:8080 nach dem starten der Container. Aus diesem Grund ist das Testing schon beendet da ja alles so funktioniert wie erwartet. 
 
 
 ## 6 Gedanken zu Security
