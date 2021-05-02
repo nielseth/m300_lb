@@ -148,6 +148,23 @@ Das docker-compose.dev.yaml File wird für Testing Gründe verwendet. Mit Merged
 
 
 ## 4 Benutzen der Umgebung
+Die Benutzung dieser Umgebung ist eigentlich relativ simple. In diesem Kapitel wird aufgezeigt wie diese Umgebung verwendet werden kann. 
+
+Um diese Umgebung zu starten muss man aus dem GitHub Repository in dem auch dieses README.md File ist das docker-compose.yaml sowie das docker-compose.dev.yaml in eine Ubuntu Umgebung kopieren. Das Verzeichnis in welches man diese beiden Files kopiert spielt keine Rolle. Die Ubuntu Umgebung sollte einfach Docker sowie Docker-Compose installiert haben. 
+
+Wenn nun diese beiden Files kopiert wurden in eine Ubuntu Umgebung so kann man eine Prod und eine Dev Umgebung starten. Diese beiden Umgebungen also Prod und Dev erreicht man mit Merged Docker-Compose Files. Um die Prod Umgebung zu starten muss man folgenden Befehl eingeben. 
+
+`sudo docker-compose -f docker-compose.yaml up -d `
+
+Um die Dev Umgebung zu starten muss man diesen Befehl eingeben. 
+
+`sudo docker-compose -f docker-compose.yaml docker-compose.dev.yaml up -d `
+
+Hier in der Dev Umgebung werden die beiden Container zuerst Anhand des docker-compose.yaml File erstellt aber das docker-compose.dev.yaml File Überschreibt dann einige Einstellungen des docker-compose.yaml Files. Das heisst das die Dev Umgebung andere Memory und CPU limitationen hat sowie eine andere Datenbank Version. 
+
+Dank dem Port Forwarding kann man nach dem starten der Container auf Redmine vom Host aus via Browser zugreifen. Die Adresse lautet localhost:8080, dies ist dasselbe für Prod und Dev Umgebung. Das Redmine Webinterface sieht dann so aus. 
+
+![Redmine Webinterface](https://github.com/nielseth/m300_lb/blob/main/lb3/Images/Redmine-Webinterface.PNG)
 
 
 ### 4.1 Probleme bei aufbauen der Umgebung
