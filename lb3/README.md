@@ -158,7 +158,7 @@ Wenn nun diese beiden Files kopiert wurden in eine Ubuntu Umgebung so kann man e
 
 Um die Dev Umgebung zu starten muss man diesen Befehl eingeben. 
 
-`sudo docker-compose -f docker-compose.yaml docker-compose.dev.yaml up -d `
+`sudo docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d `
 
 Hier in der Dev Umgebung werden die beiden Container zuerst Anhand des docker-compose.yaml File erstellt aber das docker-compose.dev.yaml File Überschreibt dann einige Einstellungen des docker-compose.yaml Files. Das heisst das die Dev Umgebung andere Memory und CPU limitationen hat sowie eine andere Datenbank Version. 
 
@@ -173,6 +173,19 @@ Beim Aufbauen der Umgebung, hatte ich meherere Probleme. Der Unterschied zwische
 Dieser Unterschied zwischen Prod und Dev Umgebung macht in einer realen Umgebung nicht wirklich viel Sinn, aber zeigt auf, dass ich Merged Docker-Compose Files verwenden kann.
 
 ## 5 Testing
+In diesem Kapitel wird aufgezeigt das die Umgebung funktionstüchtig ist und so funktioniert wie erwartet. 
+
+Als erstes der Beweis das die Container für Prod und Dev Umgebung starten. Unten auf den Bilder zuerst Prod und danach für Dev. 
+
+**Prod**
+
+![Prod start](https://github.com/nielseth/m300_lb/blob/main/lb3/Images/Container-start-Prod.PNG)
+
+**Dev**
+
+![Dev start](https://github.com/nielseth/m300_lb/blob/main/lb3/Images/Container-start-Dev.PNG)
+
+
 
 
 ## 6 Gedanken zu Security
