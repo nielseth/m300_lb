@@ -168,7 +168,9 @@ Dank dem Port Forwarding kann man nach dem starten der Container auf Redmine vom
 
 
 ### 4.1 Probleme bei aufbauen der Umgebung
+Beim Aufbauen der Umgebung, hatte ich meherere Probleme. Der Unterschied zwischen der Prod und Dev Umgebung ist nicht so signifikant wie ich diesen wollte. Die Umgebungsvariablen dieses Images funktionieren nicht wirklich. Ich konnte aus diesem Grund keine andere Datenbank verwenden (MySQL anstatt Postgresql), sowie z.B. auch die Sprache ändern ging nicht. Ich habe aus diesem Grund einfach Memory und CPU Limitationen und die Datenbankversion geändert. Dies sind die einzigen Unterschiede zwischen Prod und Dev Umgebung.
 
+Dieser Unterschied zwischen Prod und Dev Umgebung macht in einer realen Umgebung nicht wirklich viel Sinn, aber zeigt auf, dass ich Merged Docker-Compose Files verwenden kann.
 
 ## 5 Testing
 
