@@ -176,7 +176,9 @@ Dieser Unterschied zwischen Prod und Dev Umgebung macht in einer realen Umgebung
 
 
 ## 6 Gedanken zu Security
+Bei der Security habe ich den Fokus auf die Begrenzung der Resourcen der einzelnen Container gesetzt. Wie man oben in den vorherigen Kapiteln sehen kann, habe ich bei beiden Container eine Memory und CPU Begrenzung definiert. Dazu habe ich noch eine Memory Reservation bei beiden Container gemacht. 
 
+Grund für diese Begrenzung ist das die Container nicht alle Ressourcen der virtuelle Maschine für sich beziehen. 
 
 ## 7 Quellenverzeichnis
 
